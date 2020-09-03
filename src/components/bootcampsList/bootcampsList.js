@@ -31,6 +31,15 @@ class BootcampListComponent extends Component {
       ],
     };
   }
+
+  removeBootcamp = (bootcampID) => {
+    this.setState((currentState) => ({
+      bootcamps: currentState.bootcamps.filter(
+        (eachBootcamp) => eachBootcamp.id !== bootcampID
+      ),
+    }));
+  };
+
   render() {
     const { bootcamps, searchField } = this.state;
     //Sort descending
@@ -50,6 +59,7 @@ class BootcampListComponent extends Component {
             <BootcampComponent
               key={bootcamp.id}
               bootcamp={bootcamp}
+              onRemoveBootcamp={this.removeBootcamp}
             ></BootcampComponent>
           ))}
         </div>
