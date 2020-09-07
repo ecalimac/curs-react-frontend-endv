@@ -10,44 +10,26 @@ class BootcampListComponent extends Component {
     this.state = {
       searchField: "",
       bootcamps: [
-        {
-          id: 1,
-          name: "Frontend Bootcamp",
-          description: "Frontend Bootcamp",
-          date: new Date("2020-06-24"),
-        },
+        { id: 1, name: "Frontend Bootcamp", description: "Frontend Bootcamp" },
         {
           id: 2,
           name: "Backend Bootcamp",
           description: "Backend Bootcamp",
-          date: new Date("2020-06-26"),
         },
         {
           id: 3,
           name: "ML Bootcamp",
           description: "ML Bootcamp",
-          date: new Date("2020-06-23"),
         },
       ],
     };
   }
 
-  removeBootcamp = (bootcampID) => {
-    this.setState((currentState) => ({
-      bootcamps: currentState.bootcamps.filter(
-        (eachBootcamp) => eachBootcamp.id !== bootcampID
-      ),
-    }));
-  };
-
   render() {
     const { bootcamps, searchField } = this.state;
-    //Sort descending
-    const filteredBootcamps = bootcamps
-      .filter((bootcamp) =>
-        bootcamp.name.toLowerCase().includes(searchField.toLocaleLowerCase())
-      )
-      .sort((a, b) => b.date - a.date);
+    const filteredBootcamps = bootcamps.filter((bootcamp) =>
+      bootcamp.name.toLowerCase().includes(searchField.toLocaleLowerCase())
+    );
     return (
       <div className="container">
         <SearchBarCompoent
@@ -59,7 +41,6 @@ class BootcampListComponent extends Component {
             <BootcampComponent
               key={bootcamp.id}
               bootcamp={bootcamp}
-              onRemoveBootcamp={this.removeBootcamp}
             ></BootcampComponent>
           ))}
         </div>
