@@ -1,11 +1,14 @@
 import React, { useState } from "react";
-import SearchBarCompoent from "../../searchBar/searchBar";
-import CourseComponent from "../../course/course";
-import "./coursesListHooks.css";
+import SearchBar2Component from "../../searchBar/searchBar2/searchBar2";
+import "./coursesListHooksNewSearchbar.css";
 
-const CoursesListComponentHooks = () => {
+const CoursesListComponentHooksNewSearchBar = () => {
+  // Daca am mutat searchField in componenta SearchBar,
+  // nu prea isi mai are rostul sa tinem courses in state(cu useState)
+  // Daca vom lua cursurile async va trebui sa transformam aceasta componenta intr-o class component
+  // Sau, putem folosi CompoenentDidMount intr-o functional component?
+
   const [componentState, setComponentState] = useState({
-    searchField: "",
     courses: [
       {
         id: 1,
@@ -28,29 +31,16 @@ const CoursesListComponentHooks = () => {
     ],
   });
 
-  const updateSearchField = (e) => {
-    setComponentState({ ...componentState, searchField: e.target.value });
-  };
+  const { courses } = componentState;
 
-  const { courses, searchField } = componentState;
-
-  const filteredCourses = courses.filter((course) =>
-    course.name.toLocaleLowerCase().includes(searchField.toLocaleLowerCase())
-  );
-  console.log(filteredCourses);
   return (
     <div className="container">
-      <SearchBarCompoent
+      <SearchBar2Component
         placeholder="Search courses..."
-        handleChange={updateSearchField}
-      ></SearchBarCompoent>
-      <div className="card-list">
-        {filteredCourses.map((course) => (
-          <CourseComponent key={course.id} course={course}></CourseComponent>
-        ))}
-      </div>
+        dataToFilter={courses}
+      ></SearchBar2Component>
     </div>
   );
 };
 
-export default CoursesListComponentHooks;
+export default CoursesListComponentHooksNewSearchBar;

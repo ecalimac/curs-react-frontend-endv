@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import BootcampComponent from "../bootcamp/bootcamp";
 import SearchBarCompoent from "../searchBar/searchBar";
 import "./bootcampsList.css";
+import axios from "axios";
+import Spinner from "../spinnerComponent/spinner";
 
 class BootcampListComponent extends Component {
   constructor() {
@@ -9,28 +11,41 @@ class BootcampListComponent extends Component {
 
     this.state = {
       searchField: "",
-      bootcamps: [
-        { id: 1, name: "Frontend Bootcamp", description: "Frontend Bootcamp" },
-        {
-          id: 2,
-          name: "Backend Bootcamp",
-          description: "Backend Bootcamp",
-        },
-        {
-          id: 3,
-          name: "ML Bootcamp",
-          description: "ML Bootcamp",
-        },
-      ],
+      isLoading: false,
+      //bootcamps: [] -> (magically)it's working with an empty array
+      bootcamps: [{ id: 1, name: "" }],
     };
   }
-
+  componentDidMount() {
+    this.setState({ isLoading: true });
+    axios
+      .get("http://www.endava-bootcamp.com/api/v1/bootcamps/", {
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
+      })
+      .then((response) => {
+        // console.log(response, "raspuns");
+        this.setState({ bootcamps: response.data.data, isLoading: false });
+      });
+  }
+  // removeBootcamp = (bootcampID) => {
+  //   this.setState((currentState) => ({
+  //     bootcamps: currentState.bootcamps.filter(
+  //       (eachBootcamp) => eachBootcamp.id !== bootcampID
+  //     ),
+  //   }));
+  // };
   render() {
-    const { bootcamps, searchField } = this.state;
-    const filteredBootcamps = bootcamps.filter((bootcamp) =>
-      bootcamp.name.toLowerCase().includes(searchField.toLocaleLowerCase())
-    );
-    return (
+    const { bootcamps, searchField, isLoading } = this.state;
+    const filteredBootcamps = bootcamps
+      .filter((bootcamp) =>
+        bootcamp.name.toLowerCase().includes(searchField.toLocaleLowerCase())
+      )
+      .sort((a, b) => b.date - a.date);
+    return isLoading ? (
+      <Spinner />
+    ) : (
       <div className="container">
         <SearchBarCompoent
           placeholder="Search bootcamps"
@@ -41,6 +56,7 @@ class BootcampListComponent extends Component {
             <BootcampComponent
               key={bootcamp.id}
               bootcamp={bootcamp}
+              // onRemoveBootcamp={this.removeBootcamp}
             ></BootcampComponent>
           ))}
         </div>

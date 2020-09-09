@@ -6,12 +6,13 @@ const BootcampComponent = (props) => {
   const {
     bootcamp: { name, description, id },
   } = props;
-
+  // const onRemoveBootcamp = props.onRemoveBootcamp;
   return (
     <div className="card-container">
       <p>{name}</p>
       <p>{description}</p>
-      <Link to={`/bootcamp/${id}`}>See details</Link>
+      <Link to={`/bootcamps/${id}`}>See details</Link>
+      {/* <button onClick={() => onRemoveBootcamp(id)}>Delete</button> */}
     </div>
   );
 };

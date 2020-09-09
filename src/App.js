@@ -7,9 +7,14 @@ import { Route, Switch } from "react-router-dom";
 // import CoursesList from "./components/coursesList/coursesList";
 import CourseComponent from "./components/course/course";
 import Navigation from "./components/navigation/navigation";
-import BootcampListComponentHooks from "./components/bootcampsList/hooks-version/bootcampsListHooks";
-import BootcampComponent from "./components/bootcamp/bootcamp";
+// import BootcampListComponentHooks from "./components/bootcampsList/hooks-version/bootcampsListHooks";
+// import BootcampComponent from "./components/bootcamp/bootcamp";
 import CoursesListComponentHooks from "./components/coursesList/hooks-version/coursesListHooks";
+import BootcampDetailsComponent from "./components/bootcampDetails/bootcampDetails";
+import BootcampListComponent from "./components/bootcampsList/bootcampsList";
+// import FormComponent from "./components/forms/formComponent/formComponent";
+import FormParentComponent from "./components/forms/formParent/formParent";
+import CoursesListComponentHooksNewSearchBar from "./components/coursesList/hooks-version-with-refactored-searchBar/coursesListHooksNewSearchbar";
 
 class App extends Component {
   constructor() {
@@ -20,7 +25,7 @@ class App extends Component {
     };
   }
   render() {
-    console.log("render Parent");
+    // console.log("render Parent");
     return (
       <Fragment>
         {/* <button onClick={() => this.setState(state => ({showChild : !state.showChild}))}>
@@ -34,17 +39,22 @@ class App extends Component {
 
         <Navigation />
         <Switch>
-          <Route exact path="/" component={BootcampListComponentHooks}></Route>
+          <Route exact path="/" component={BootcampListComponent}></Route>
           <Route
             exact
             path="/courses"
-            component={CoursesListComponentHooks}
+            component={CoursesListComponentHooksNewSearchBar}
           ></Route>
           <Route exact path="/courses/:id" component={CourseComponent} />
           <Route
             exact
+            path="/bootcamps/add"
+            component={FormParentComponent}
+          ></Route>
+          <Route
+            exact
             path="/bootcamps/:id"
-            component={BootcampComponent}
+            component={BootcampDetailsComponent}
           ></Route>
         </Switch>
       </Fragment>
