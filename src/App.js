@@ -15,6 +15,7 @@ import BootcampListComponent from "./components/bootcampsList/bootcampsList";
 // import FormComponent from "./components/forms/formComponent/formComponent";
 import FormParentComponent from "./components/forms/formParent/formParent";
 import CoursesListComponentHooksNewSearchBar from "./components/coursesList/hooks-version-with-refactored-searchBar/coursesListHooksNewSearchbar";
+import BootcampRouteComponent from "./components/hooksversion/BootcampsParent/BootcampsParent";
 
 class App extends Component {
   constructor() {
@@ -55,6 +56,11 @@ class App extends Component {
             exact
             path="/bootcamps/:id"
             component={BootcampDetailsComponent}
+          ></Route>
+          <Route
+            exact
+            patch="/hooks"
+            component={BootcampRouteComponent}
           ></Route>
         </Switch>
       </Fragment>

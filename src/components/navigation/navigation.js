@@ -15,6 +15,9 @@ const Navigation = () => {
         <li>
           <Link to="/bootcamps/add">Add bootcamp</Link>
         </li>
+        <li>
+          <Link to="/hooks">Bootcamps - Hooks version</Link>
+        </li>
       </ul>
     </div>
   );
