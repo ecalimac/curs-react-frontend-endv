@@ -51,6 +51,7 @@ const FormValidatorComponent = ({ initialValues, validate }) => {
   //     console.log(event, "submit");
   //     //aici mai trebuie facut ceva
   //     //vrem ca atunci cand dam submit, daca vreun camp nu e valid
+
   //   };
   return (
     <>

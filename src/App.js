@@ -16,6 +16,7 @@ import BootcampListComponent from "./components/bootcampsList/bootcampsList";
 import FormParentComponent from "./components/forms/formParent/formParent";
 import CoursesListComponentHooksNewSearchBar from "./components/coursesList/hooks-version-with-refactored-searchBar/coursesListHooksNewSearchbar";
 import BootcampRouteComponent from "./components/hooksversion/BootcampsParent/BootcampsParent";
+import ContextParent from "./components/hooksversion/contextParent/contextParent";
 
 class App extends Component {
   constructor() {
@@ -38,7 +39,7 @@ class App extends Component {
                 </button>
                 {this.state.showChild ? <ChildComponent text={this.state.text} /> : null} */}
 
-        <Navigation />
+        {/* <Navigation />
         <Switch>
           <Route exact path="/" component={BootcampListComponent}></Route>
           <Route
@@ -62,7 +63,8 @@ class App extends Component {
             patch="/hooks"
             component={BootcampRouteComponent}
           ></Route>
-        </Switch>
+        </Switch> */}
+        <ContextParent />
       </Fragment>
     );
   }
